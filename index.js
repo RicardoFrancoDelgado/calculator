@@ -25,14 +25,14 @@ const allowedKeys = [
   ' '
 ]
 
-document.querySelectorAll(".charKey").forEach(function(charKeyBtn) {
-  charKeyBtn.addEventListener('click', function() {
+document.querySelectorAll('.charKey').forEach(function (charKeyBtn) {
+  charKeyBtn.addEventListener('click', function () {
     const value = charKeyBtn.dataset.value
     input.value += value
   })
 })
 
-document.getElementById('clear').addEventListener('click', function() {
+document.getElementById('clear').addEventListener('click', function () {
   input.value = ''
   input.focus()
 })
@@ -41,19 +41,26 @@ document.getElementById('equal').addEventListener('click', calculate)
 
 input.addEventListener('keydown', function (ev) {
   ev.preventDefault()
-  if(allowedKeys.includes(ev.key)) {
+  if (allowedKeys.includes(ev.key)) {
     input.value += ev.key
     return
   }
-  if(ev.key === 'Backspace') {
+  if (ev.key === 'Backspace') {
     input.value = input.value.slice(0, -1)
   }
-  if(ev.key === 'Enter') {
+  if (ev.key === 'Enter') {
     calculate()
   }
 })
 
 function calculate() {
   const result = eval(input.value)
-  resultInput.value = result
+
+  if (result === Infinity) {
+    resultInput.value = "Can't divide by 0"
+  } else if (isNaN(result)) {
+    resultInput.value = "Can't divide by 0"
+  } else {
+    resultInput.value = result
+  } 
 }
