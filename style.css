@@ -111,7 +111,9 @@ input {
 }
 
 .error {
-  background-color: var(--error-color);
+  border: solid var(--error-color);
+  border-width: 2px;
+  color: var(--error-color);
 }
 
 .success {
